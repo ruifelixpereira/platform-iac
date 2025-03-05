@@ -60,11 +60,11 @@ module "vwan_with_vhub" {
   }
   routing_intents = {
     "${local.location_short}-vhub-routing-intent" = {
-      name            = "private-routing-intent"
+      name            = "internet-routing-intent"
       virtual_hub_key = "${local.location_short}-vhub"
       routing_policies = [{
-        name                  = "${local.location_short}-vhub-routing-policy-private"
-        destinations          = ["PrivateTraffic"]
+        name                  = "${local.location_short}-vhub-routing-policy-internet"
+        destinations          = ["Internet"]
         next_hop_firewall_key = "${local.location_short}-vhub-fw"
       }]
     }
