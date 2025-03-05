@@ -6,12 +6,12 @@ The main purpose of this repository is to provide a Platform landing zone includ
     - [x] Virtual WAN
     - [x] Virtual Hub with ER Gateway and Firewall
 
-2. **Naming resolution (DNS)**
-    - [ ] Private Resolver
-    - [ ] Private DNS Zones
+2. **Firewall Rules**
+    - [x] Firewall Policy
+    - [x] Firewall Policy Rules Collection Group
 
 3. **Management**
-    - [ ] Log Analytics Workspace
+    - [x] Log Analytics Workspace
 
 
 ## Contents

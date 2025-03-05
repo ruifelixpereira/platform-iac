@@ -16,15 +16,12 @@ variable "network_resource_group_name" {
   description = "(Required) Resource group name for networking services"
 }
 
-### Virtual Wan  Variables
-variable "virtual_network_name" {
-  type        = string
-  description = "(Required) Virtual Network name"
-}
-
-variable "virtual_network_address_space" {
-  type        = string
-  description = "(Required) Virtual Hub address space CIDR"
+### Virtual Network  Variables
+variable "virtual_networks" {
+  type = map(object({
+    name          = string
+    address_space = string
+  }))
 }
 
 variable "virtual_hub_id" {

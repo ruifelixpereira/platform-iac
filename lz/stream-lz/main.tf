@@ -18,17 +18,23 @@ resource "azurerm_resource_group" "network_rg" {
 # Virtual Network
 module "stream_vnet" {
   source              = "../../modules/network/virtual_network"
+ 
+  for_each = var.virtual_networks != null ? var.virtual_networks : {}
+
   location            = var.location
   environment         = var.environment
-  name                = var.virtual_network_name
+  name                = each.value.name
   resource_group_name = azurerm_resource_group.network_rg.name
-  address_space       = [var.virtual_network_address_space]
+  address_space       = [each.value.address_space]
   tags                = local.tags
 }
 
 # Connect Virtual Network with Virtual Hub
 resource "azurerm_virtual_hub_connection" "vhub_vnet_conn" {
-  name                      = "vhub-vnet-conn-${module.stream_vnet.name}"
+
+  for_each = module.stream_vnet != null ? module.stream_vnet : {}
+
+  name                      = "vhub-vnet-conn-${each.value.name}"
   virtual_hub_id            = var.virtual_hub_id
-  remote_virtual_network_id = module.stream_vnet.id
+  remote_virtual_network_id = each.value.id
 }
